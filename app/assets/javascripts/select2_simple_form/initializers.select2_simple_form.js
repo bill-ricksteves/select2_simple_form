@@ -41,7 +41,7 @@ var Select2SimpleForm = (function($) {
 
     // Allow for HTML markup to show properly in the resulting options
     if (options.allow_html) {
-      var stripDiacritics = window.Select2.util.stripDiacritics;
+      var stripDiacritics = window.select2.util.stripDiacritics;
 
       // We're going to use a slight variation of Select2 markMatch function
       // to avoid matches inside html tags:
@@ -137,19 +137,15 @@ var Select2SimpleForm = (function($) {
       var $this = $(this);
       var dataOptions = $this.data('options');
       var initializerOptions = prepareSelect2Options(dataOptions || options || {}, $this);
-      try{
-        $this.select2(initializerOptions);
+      $this.select2(initializerOptions);
 
-        // Post plugins for Select2
-        if (dataOptions.sortable) {
-          $this.select2('container').find('ul.select2-choices').sortable({
-            containment: 'parent',
-            start: function() { $this.select2('onSortStart'); },
-            update: function() { $this.select2('onSortEnd'); }
-          });
-        }
-      }catch(err){
-       console.log(err)
+      // Post plugins for Select2
+      if (dataOptions.sortable) {
+        $this.select2('container').find('ul.select2-choices').sortable({
+          containment: 'parent',
+          start: function() { $this.select2('onSortStart'); },
+          update: function() { $this.select2('onSortEnd'); }
+        });
       }
     });
   }
