@@ -41,28 +41,28 @@ var Select2SimpleForm = (function($) {
 
     // Allow for HTML markup to show properly in the resulting options
     if (options.allow_html) {
-      var stripDiacritics = window.select2.util.stripDiacritics;
-
-      // We're going to use a slight variation of Select2 markMatch function
-      // to avoid matches inside html tags:
-      var markMatch = function (text, term, markup, escapeMarkup) {
-        var searchRegex = stripDiacritics(term.toUpperCase()) + "(?![^<]*>)";
-        var match = stripDiacritics(text.toUpperCase()).match(searchRegex),
-            tl    = term.length;
-
-        match = match ? match.index : -1;
-
-        if (match < 0) {
-            markup.push(escapeMarkup(text));
-            return;
-        }
-
-        markup.push(escapeMarkup(text.substring(0, match)));
-        markup.push("<span class='select2-match'>");
-        markup.push(escapeMarkup(text.substring(match, match + tl)));
-        markup.push("</span>");
-        markup.push(escapeMarkup(text.substring(match + tl, text.length)));
-      }
+      // var stripDiacritics = window.Select2.util.stripDiacritics;
+      //
+      // // We're going to use a slight variation of Select2 markMatch function
+      // // to avoid matches inside html tags:
+      // var markMatch = function (text, term, markup, escapeMarkup) {
+      //   var searchRegex = stripDiacritics(term.toUpperCase()) + "(?![^<]*>)";
+      //   var match = stripDiacritics(text.toUpperCase()).match(searchRegex),
+      //       tl    = term.length;
+      //
+      //   match = match ? match.index : -1;
+      //
+      //   if (match < 0) {
+      //       markup.push(escapeMarkup(text));
+      //       return;
+      //   }
+      //
+      //   markup.push(escapeMarkup(text.substring(0, match)));
+      //   markup.push("<span class='select2-match'>");
+      //   markup.push(escapeMarkup(text.substring(match, match + tl)));
+      //   markup.push("</span>");
+      //   markup.push(escapeMarkup(text.substring(match + tl, text.length)));
+      // }
 
       var formatResult = function (result, container, query, escapeMarkup){
         var markup=[];
