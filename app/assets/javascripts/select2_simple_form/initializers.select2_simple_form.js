@@ -137,15 +137,19 @@ var Select2SimpleForm = (function($) {
       var $this = $(this);
       var dataOptions = $this.data('options');
       var initializerOptions = prepareSelect2Options(dataOptions || options || {}, $this);
-      $this.select2(initializerOptions);
+      try{
+        $this.select2(initializerOptions);
 
-      // Post plugins for Select2
-      if (dataOptions.sortable) {
-        $this.select2('container').find('ul.select2-choices').sortable({
-          containment: 'parent',
-          start: function() { $this.select2('onSortStart'); },
-          update: function() { $this.select2('onSortEnd'); }
-        });
+        // Post plugins for Select2
+        if (dataOptions.sortable) {
+          $this.select2('container').find('ul.select2-choices').sortable({
+            containment: 'parent',
+            start: function() { $this.select2('onSortStart'); },
+            update: function() { $this.select2('onSortEnd'); }
+          });
+        }
+      }catch(err){
+       console.log(err)
       }
     });
   }
